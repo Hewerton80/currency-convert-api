@@ -8,11 +8,11 @@ const currencies = require('./util/currencies.json');
 app.use(express.json());
 app.use(cors());
 
-(async () => {
-  
-})();
-
 app.get('/', async (req, res) => {
+    return res.status(200).json({msg:'hello world'});
+})
+
+app.get('/api', async (req, res) => {
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -45,6 +45,7 @@ app.get('/', async (req, res) => {
     await browser.close();
     return res.status(200).json(result);
 })
+
 
 const PORT = process.env.PORT || 3001;
 
