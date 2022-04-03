@@ -1,0 +1,30 @@
+[
+  {
+    "code": "BRL",
+    "name": "Brazilian Real"
+  },
+  {
+    "code": "USD",
+    "name": "US Dollar"
+  },
+  {
+    "code": "EUR",
+    "name": "Euro"
+  },
+  {
+    "code": "GBP",
+    "name": "British Pound"
+  },
+  {
+    "code": "JPY",
+    "name": "Japanese Yen"
+  },
+  {
+    "code": "CNY",
+    "name": "Chinese Yuan"
+  },
+  {
+    "code": "ARS",
+    "name": "Argentine Peso"
+  }
+]
