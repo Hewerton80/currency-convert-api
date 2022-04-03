@@ -1,1 +1,44 @@
-[{"code":"BRL","name":"Brazilian Real","valueInBRL":1,"updatedAt":"2022-04-03T10:36:01.776-03:00"},{"code":"USD","name":"US Dollar","valueInBRL":0.21,"updatedAt":"2022-04-03T10:36:04.216-03:00"},{"code":"EUR","name":"Euro","valueInBRL":0.19,"updatedAt":"2022-04-03T10:36:05.951-03:00"},{"code":"GBP","name":"British Pound","valueInBRL":0.16,"updatedAt":"2022-04-03T10:36:07.415-03:00"},{"code":"JPY","name":"Japanese Yen","valueInBRL":26.28,"updatedAt":"2022-04-03T10:36:08.540-03:00"},{"code":"CNY","name":"Chinese Yuan","valueInBRL":1.37,"updatedAt":"2022-04-03T10:36:09.441-03:00"},{"code":"ARS","name":"Argentine Peso","valueInBRL":23.86,"updatedAt":"2022-04-03T10:36:10.419-03:00"}]
+[
+  {
+    "code": "BRL",
+    "name": "Brazilian Real",
+    "valueInBRL": 1,
+    "updatedAt": "2022-04-03T10:54:01.752-03:00"
+  },
+  {
+    "code": "USD",
+    "name": "US Dollar",
+    "valueInBRL": 0.21,
+    "updatedAt": "2022-04-03T10:54:06.093-03:00"
+  },
+  {
+    "code": "EUR",
+    "name": "Euro",
+    "valueInBRL": 0.19,
+    "updatedAt": "2022-04-03T10:54:07.481-03:00"
+  },
+  {
+    "code": "GBP",
+    "name": "British Pound",
+    "valueInBRL": 0.16,
+    "updatedAt": "2022-04-03T10:54:08.563-03:00"
+  },
+  {
+    "code": "JPY",
+    "name": "Japanese Yen",
+    "valueInBRL": 26.28,
+    "updatedAt": "2022-04-03T10:54:09.430-03:00"
+  },
+  {
+    "code": "CNY",
+    "name": "Chinese Yuan",
+    "valueInBRL": 1.37,
+    "updatedAt": "2022-04-03T10:54:10.230-03:00"
+  },
+  {
+    "code": "ARS",
+    "name": "Argentine Peso",
+    "valueInBRL": 23.86,
+    "updatedAt": "2022-04-03T10:54:11.112-03:00"
+  }
+]

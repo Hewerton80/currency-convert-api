@@ -1,5 +1,5 @@
 const cron = require('node-cron')
-const puppeteer = require('puppeteer')
+// const puppeteer = require('puppeteer')
 const chromium = require('chrome-aws-lambda')
 const path = require('path')
 const fs = require('fs')
@@ -10,11 +10,11 @@ const currencies = require('../util/currencies.json')
 const startBot = () => {
   cron.schedule('* * * * *', () => {
     ;(async () => {
-      const browser = await puppeteer.launch({
+      const browser = await chromium.puppeteer.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath,
-        headless: chromium.headless,
+        headless: true,
         ignoreHTTPSErrors: true,
       })
       const page = await browser.newPage()
