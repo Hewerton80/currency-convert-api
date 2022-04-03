@@ -15,7 +15,7 @@ exports.handleBot = async (event, callback) => {
   const page = await browser.newPage()
 
   let result = []
-  for (let i = 0; i < currencies.length; i++) {
+  for (let i = 0; i < 2; i++) {
     if (currencies[i].code !== 'BRL') {
       let currencyCode = currencies[i].code
       let currencyame = currencies[i].name
