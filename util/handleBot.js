@@ -1,9 +1,10 @@
 const chromium = require('chrome-aws-lambda')
+const path = require('path')
 const fs = require('fs')
 const getCurrentIsoDate = require('../util/getCurrentIsoDate')
 const currencies = require('../util/currencies.json')
 
-exports.handleBot = async (event, callback) => {
+exports.handleBot = async () => {
   const browser = await chromium.puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
@@ -44,6 +45,16 @@ exports.handleBot = async (event, callback) => {
     }
   }
   await browser.close()
+
+  try {
+    const currenciesResultJson = JSON.stringify(result)
+    fs.writeFileSync(
+      path.resolve(__dirname, '..', 'database', 'currencies.json'),
+      currenciesResultJson
+    )
+  } catch (err) {
+    console.log(err)
+  }
 
   return result
 }

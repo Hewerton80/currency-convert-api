@@ -22,9 +22,7 @@ app.get('/', async (req, res) => {
 })
 app.get('/teste', async (req, res) => {
   try {
-    const result = await handleBot({
-      url: 'https://www.youtube.com/watch?v=V45ymCXBpUM&ab_channel=codedamn',
-    })
+    const result = await handleBot()
     return res.status(200).json(result)
   } catch (err) {
     console.log(err)
