@@ -1,10 +1,10 @@
 const chromium = require('chrome-aws-lambda')
+const fs = require('fs')
+const getCurrentIsoDate = require('../util/getCurrentIsoDate')
+const currencies = require('../util/currencies.json')
 
 exports.handleBot = async (event, callback) => {
-  let result = null
-  let browser = null
-
-  browser = await chromium.puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
@@ -12,13 +12,38 @@ exports.handleBot = async (event, callback) => {
     ignoreHTTPSErrors: true,
   })
 
-  let page = await browser.newPage()
+  const page = await browser.newPage()
 
-  await page.goto(event.url || 'https://example.com')
-
-  result = await page.title()
-  if (browser !== null) {
-    await browser.close()
+  let result = []
+  for (let i = 0; i < currencies.length; i++) {
+    if (currencies[i].code !== 'BRL') {
+      let currencyCode = currencies[i].code
+      let currencyame = currencies[i].name
+      await page.goto(`https://www.google.com.br/search?q=BRL+TO+${currencyCode}`)
+      let currencyResult = await page.evaluate(() => {
+        const inputs = document.querySelectorAll('input[type=number]')
+        return Number(inputs[1].value)
+      })
+      console.log(
+        `1 BRL (Brazilian Real) -> ${currencyResult} ${currencyCode} (${currencyame})`
+      )
+      result.push({
+        code: currencyCode,
+        name: currencyame,
+        valueInBRL: currencyResult,
+        updatedAt: getCurrentIsoDate(),
+      })
+    } else {
+      result.push({
+        code: 'BRL',
+        name: 'Brazilian Real',
+        valueInBRL: 1,
+        updatedAt: getCurrentIsoDate(),
+      })
+      console.log(`1 BRL (Brazilian Real) -> 1 BRL (Brazilian Real)`)
+    }
   }
+  await browser.close()
+
   return result
 }

@@ -19,7 +19,9 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 const startBot = () => {
   cron.schedule('* * * * *', () => {
     ;(async () => {
-      const browser = await puppeteer.launch({
+      let browser = null
+
+      browser = await puppeteer.launch({
         args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
         defaultViewport: chrome.defaultViewport,
         executablePath: await chrome.executablePath,
@@ -56,7 +58,9 @@ const startBot = () => {
           console.log(`1 BRL (Brazilian Real) -> 1 BRL (Brazilian Real)`)
         }
       }
-      await browser.close()
+      if (browser !== null) {
+        await browser.close()
+      }
 
       try {
         const currenciesResultJson = JSON.stringify(result)

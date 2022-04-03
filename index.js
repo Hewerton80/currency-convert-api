@@ -25,9 +25,10 @@ app.get('/teste', async (req, res) => {
     const result = await handleBot({
       url: 'https://www.youtube.com/watch?v=V45ymCXBpUM&ab_channel=codedamn',
     })
-    return res.status(200).json({ result })
+    return res.status(200).json(result)
   } catch (err) {
-    return res.status(500).json(err)
+    console.log(err)
+    return res.status(500).json(JSON.stringify(err))
   }
 })
 
