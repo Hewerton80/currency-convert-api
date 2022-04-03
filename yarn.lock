@@ -869,9 +869,9 @@ moment-timezone@^0.5.31:
     moment ">= 2.9.0"
 
 "moment@>= 2.9.0":
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 ms@2.0.0:
   version "2.0.0"
@@ -1072,6 +1072,24 @@ pupa@^2.1.1:
   integrity sha512-l1jNAspIBSFqbT+y+5FosojNpVpF94nlI+wDUpqP9enwOTfHx9f0gh5nB96vl+6yTpsJsypeNrwfzPrKuHB41A==
   dependencies:
     escape-goat "^2.0.0"
+
+puppeteer-core@^13.5.2:
+  version "13.5.2"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-13.5.2.tgz#ae5788f98dbb322fa3514b60f2ebdd2fb3b7cfb7"
+  integrity sha512-uxHOWCHt9mGUCLu8qtbEy3UqHlBRMzGCyPmAeoq2KrtmPOC0ZJPRZrDLWJMG3E/gwuHinDtZnBbnFfRfk/PABg==
+  dependencies:
+    cross-fetch "3.1.5"
+    debug "4.3.4"
+    devtools-protocol "0.0.969999"
+    extract-zip "2.0.1"
+    https-proxy-agent "5.0.0"
+    pkg-dir "4.2.0"
+    progress "2.0.3"
+    proxy-from-env "1.1.0"
+    rimraf "3.0.2"
+    tar-fs "2.1.1"
+    unbzip2-stream "1.4.3"
+    ws "8.5.0"
 
 puppeteer@^13.5.2:
   version "13.5.2"

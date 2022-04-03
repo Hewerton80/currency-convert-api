@@ -1,19 +1,28 @@
 const cron = require('node-cron')
-// const puppeteer = require('puppeteer')
-const chromium = require('chrome-aws-lambda')
 const path = require('path')
 const fs = require('fs')
 const getCurrentIsoDate = require('../util/getCurrentIsoDate')
-
 const currencies = require('../util/currencies.json')
+
+let chrome = { args: [] }
+let puppeteer
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  // running on the Vercel platform.
+  chrome = require('chrome-aws-lambda')
+  puppeteer = require('puppeteer-core')
+} else {
+  // running locally.
+  puppeteer = require('puppeteer')
+}
 
 const startBot = () => {
   cron.schedule('* * * * *', () => {
     ;(async () => {
-      const browser = await chromium.puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath,
+      const browser = await puppeteer.launch({
+        args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
+        defaultViewport: chrome.defaultViewport,
+        executablePath: await chrome.executablePath,
         headless: true,
         ignoreHTTPSErrors: true,
       })
@@ -28,9 +37,9 @@ const startBot = () => {
             const inputs = document.querySelectorAll('input[type=number]')
             return Number(inputs[1].value)
           })
-          //   console.log(
-          //     `1 BRL (Brazilian Real) -> ${currencyResult} ${currencyCode} (${currencyame})`
-          //   )
+          console.log(
+            `1 BRL (Brazilian Real) -> ${currencyResult} ${currencyCode} (${currencyame})`
+          )
           result.push({
             code: currencyCode,
             name: currencyame,
@@ -44,7 +53,7 @@ const startBot = () => {
             valueInBRL: 1,
             updatedAt: getCurrentIsoDate(),
           })
-          //   console.log(`1 BRL (Brazilian Real) -> 1 BRL (Brazilian Real)`)
+          console.log(`1 BRL (Brazilian Real) -> 1 BRL (Brazilian Real)`)
         }
       }
       await browser.close()
