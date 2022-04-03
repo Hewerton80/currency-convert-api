@@ -14,7 +14,6 @@ app.get('/', async (req, res) => {
     const currencies = fs.readFileSync(
       path.resolve(__dirname, 'database', 'currencies.json')
     )
-    console.log(JSON.parse(currencies))
     return res.status(200).json(JSON.parse(currencies))
   } catch (err) {
     return res.status(500).json({ erro: 'Erro ao obter moedas' })
