@@ -1,36 +1,25 @@
 const cron = require('node-cron')
 const path = require('path')
+const chromium = require('chrome-aws-lambda')
 const fs = require('fs')
 const getCurrentIsoDate = require('../util/getCurrentIsoDate')
 const currencies = require('../util/currencies.json')
 
-let chrome = { args: [] }
-let puppeteer
-
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-  // running on the Vercel platform.
-  chrome = require('chrome-aws-lambda')
-  puppeteer = require('puppeteer-core')
-} else {
-  // running locally.
-  puppeteer = require('puppeteer')
-}
-
 const startBot = () => {
   cron.schedule('* * * * *', () => {
     ;(async () => {
-      let browser = null
-
-      browser = await puppeteer.launch({
-        args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
-        defaultViewport: chrome.defaultViewport,
-        executablePath: await chrome.executablePath,
+      const browser = await chromium.puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
         headless: true,
         ignoreHTTPSErrors: true,
       })
+
       const page = await browser.newPage()
+
       let result = []
-      for (let i = 0; i < currencies.length; i++) {
+      for (let i = 0; i < 2; i++) {
         if (currencies[i].code !== 'BRL') {
           let currencyCode = currencies[i].code
           let currencyame = currencies[i].name
@@ -58,9 +47,7 @@ const startBot = () => {
           console.log(`1 BRL (Brazilian Real) -> 1 BRL (Brazilian Real)`)
         }
       }
-      if (browser !== null) {
-        await browser.close()
-      }
+      await browser.close()
 
       try {
         const currenciesResultJson = JSON.stringify(result)
