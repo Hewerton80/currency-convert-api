@@ -48,7 +48,6 @@ exports.handleBot = async () => {
 
   try {
     const currenciesResultJson = JSON.stringify(result)
-    console.log(currenciesResultJson)
     fs.writeFileSync(
       path.resolve(__dirname, '..', 'database', 'currencies.json'),
       currenciesResultJson

@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 const fs = require('fs')
-require('./schedules/bot')
+// require('./schedules/bot')
 const { handleBot } = require('./util/handleBot')
 const app = express()
 
@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
     return res.status(500).json({ erro: 'Erro to get currencies' })
   }
 })
-app.get('/teste', async (req, res) => {
+app.get('/sync', async (req, res) => {
   try {
     const result = await handleBot()
     return res.status(200).json(result)

@@ -1,0 +1,11 @@
+name: 1-minute-cron
+on:
+  schedule:
+    - cron: '* * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rum job
+        run: |
+          node teste_schedule.js
