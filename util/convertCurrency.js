@@ -1,15 +1,16 @@
-const chromium = require('chrome-aws-lambda')
+const puppeteer = require('puppeteer')
+const puppeteerCore = require('puppeteer-core')
 
 exports.convertCurrency = async (fromCurrencyCode, toCurrencyCode) => {
-  const browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: true,
+  const browser = await puppeteerCore.launch({
+    args: puppeteerCore.args,
+    defaultViewport: puppeteerCore.defaultViewport,
+    executablePath: puppeteer.executablePath(),
+    headless: 'new',
     ignoreHTTPSErrors: true,
     timeout: 90000, // 90 seconds
   })
-
+  console.log('executablePath: ', puppeteer.executablePath())
   const page = await browser.newPage()
 
   await page.goto(
